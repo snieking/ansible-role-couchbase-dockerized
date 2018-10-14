@@ -1,5 +1,7 @@
 Ansible Role: Couchbase Dockerized
 =========
+[![Build Status](https://travis-ci.org/snieking/ansible-role-couchbase-dockerized.svg?branch=master)](https://travis-ci.org/snieking/ansible-role-couchbase-dockerized)
+[![Ansible Role](https://img.shields.io/ansible/role/d/3078.svg)](https://galaxy.ansible.com/snieking/couchbase_dockerized)
 
 Runs a dockerized couchbase with necessary OS configuration for production environments.
 
