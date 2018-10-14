@@ -1,5 +1,6 @@
 galaxy_info:
   author: Viktor Plane
+  role_name: couchbase-dockerized
   description: Runs a dockerized couchbase with necessary OS configuration for production environments.
   company: thecuriousdev.org
 
