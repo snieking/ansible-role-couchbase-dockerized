@@ -1,0 +1,14 @@
+---
+- name: check docker installed
+  command: docker
+
+- name: include os configuration for CentOS/RHEL
+  include_tasks: configure-os.yml
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: include OS configuration for Debian/Ubuntu
+  include_tasks: configure-os.yml
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: include couchbase tasks
+  include_tasks: run-couchbase.yml
