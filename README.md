@@ -8,7 +8,7 @@ There are many good reasons to run Couchbase in a dockerized environment. The ma
 Requirements
 ------------
 
-See dependencies section.
+The role requires that docker is installed on the target host. A good tip is to add [geerlingguy.docker](https://galaxy.ansible.com/geerlingguy/docker) role from Ansible Galaxy to your playbook before this role is executed.
 
 Role Variables
 --------------
@@ -23,8 +23,6 @@ Volume for persisting the Couchbase data.
 
 Dependencies
 ------------
-
-The role requires that docker is installed on the target host. A good tip is to add [geerlingguy.docker](https://galaxy.ansible.com/geerlingguy/docker) role from Ansible Galaxy to your playbook before this role is executed.
 
 Example Playbook
 ----------------
