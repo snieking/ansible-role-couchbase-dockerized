@@ -1,4 +1,4 @@
-Couchbase Dockerized
+Ansible Role: Couchbase Dockerized
 =========
 
 Runs a dockerized couchbase with necessary OS configuration for production environments.
@@ -43,9 +43,9 @@ Including an example of how to use your role (for instance, with variables passe
 License
 -------
 
-BSD
+BSD, MIT
 
 Author Information
 ------------------
 
-Viktor Plane [thecuriousdev.org](https://thecuriousdev.org)
+Viktor Plane [https://thecuriousdev.org](https://thecuriousdev.org)
