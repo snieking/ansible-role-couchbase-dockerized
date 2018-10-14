@@ -1,8 +1,21 @@
 ---
+- name: install python-pip
+  package:
+    name: python-pip
+    state: present
+  become: yes
+
+- name: upgrade python-pip
+  pip:
+    name: pip
+    extra_args: --upgrade
+  become: yes
+
 - name: ensure docker-py package exists
   pip:
     name: docker-py
     state: present
+  become: yes
 
 - name: ensure couchbase is running in docker
   docker_container:
@@ -10,41 +23,6 @@
     image: "couchbase/server:{{ couchbase_version }}"
     volumes:
       - "{{ couchbase_docker_volume_dir }}:/opt/couchbase/var"
-    published_ports:
-      - "4369:4369"
-      - "8091:8091"
-      - "8092:8092"
-      - "8093:8093"
-      - "8094:8094"
-      - "8095:8095"
-      - "8096:8096"
-      - "9100:9100"
-      - "9101:9101"
-      - "9102:9102"
-      - "9103:9103"
-      - "9104:9104"
-      - "9105:9105"
-      - "9110:9110"
-      - "9111:9111"
-      - "9112:9112"
-      - "9113:9113"
-      - "9114:9114"
-      - "9115:9115"
-      - "9116:9116"
-      - "9117:9117"
-      - "9118:9118"
-      - "9120:9120"
-      - "9121:9121"
-      - "9122:9122"
-      - "9999:9999"
-      - "11207:11207"
-      - "11209:11209"
-      - "11210:11210"
-      - "11211:11211"
-      - "18091:18091"
-      - "18092:18092"
-      - "18093:18093"
-      - "18094:18094"
-      - "18095:18095"
-      - "18096:18096"
-      #- "21100-21299:21100-21299" 
+    published_ports: "{{ couchbase_ports }}"
+  become: yes
+    

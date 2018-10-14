@@ -24,7 +24,7 @@ Volume for persisting the Couchbase data.
 Dependencies
 ------------
 
-The role requires that docker is installed on the target host. A good tip is to add [geerlingguy.docker](https://galaxy.ansible.com/geerlingguy/docker) role from Ansible Galaxy to your playbook before this role.
+The role requires that docker is installed on the target host. A good tip is to add [geerlingguy.docker](https://galaxy.ansible.com/geerlingguy/docker) role from Ansible Galaxy to your playbook before this role is executed.
 
 Example Playbook
 ----------------
@@ -35,7 +35,7 @@ Including an example of how to use your role (for instance, with variables passe
   roles:
     - role: geerlingguy.docker
       become: yes
-    - role: thecuriousdev.couchbase-dockerized
+    - role: snieking.couchbase-dockerized
       couchbase_version: enterprise-5.1.1
       couchbase_docker_volume_dir: /home/snieking/couchbase/var
 ```

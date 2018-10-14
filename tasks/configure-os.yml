@@ -1,26 +1,25 @@
 - name: copy script for disabling transparent huge pages exists
   copy:
     src: disable-thp
-    dest: /etc/init.d/disable-thp
+    dest: /etc/init.d/disable-thp.service
     mode: 0755
   become: yes
 
-- name: ensure disable-thp service started
-  service:
-    name: disable-thp
-    enabled: yes
-    state: started
+#- name: ensure disable-thp service started
+#  service:
+#    name: disable-thp
+#    enabled: yes
 
-- name: copy script for updating swappiness
-  copy:
-    src: update-swappiness
-    dest: /tmp/update-swappiness
+#- name: copy script for updating swappiness
+#  copy:
+#    src: update-swappiness
+#    dest: /tmp/update-swappiness
 
-- name: make script executable
-  file:
-    dest: /tmp/update-swappiness
-    mode: a+x
+#- name: make script executable
+#  file:
+#    dest: /tmp/update-swappiness
+#    mode: a+x
 
-- name: execute script
-  script:
-    executable: /tmp/update-swappiness
+#- name: execute script
+#  script:
+#    executable: /tmp/update-swappiness
