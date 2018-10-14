@@ -17,4 +17,6 @@ script:
   - cat ansible.cfg
   - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
   - ansible-playbook -i tests/inventory tests/test.yml --connection=local --become
-  - curl --connect-timeout 5 --max-time 10 --retry 5 --retry-delay 2 --retry-max-time 40 http://localhost:8091/ui/index.html
+  # Wait for Couchbase to boot
+  - sleep 30
+  - curl http://localhost:8091/ui/index.html
