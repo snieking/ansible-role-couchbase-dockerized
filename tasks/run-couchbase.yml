@@ -7,7 +7,7 @@
 - name: ensure couchbase is running in docker
   docker_container:
     name: "couchbase"
-    image: "couchbase/server:enterprise-{{ couchbase_version }}"
+    image: "couchbase/server:{{ couchbase_version }}"
     volumes:
       - "{{ couchbase_docker_volume_dir }}:/opt/couchbase/var"
     published_ports:

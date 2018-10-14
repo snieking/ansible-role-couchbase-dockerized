@@ -1,31 +1,44 @@
-Role Name
+Couchbase Dockerized
 =========
 
-A brief description of the role goes here.
+Runs a dockerized couchbase with necessary OS configuration for production environments.
+
+There are many good reasons to run Couchbase in a dockerized environment. The main reason is that it is much easier to upgrade/downgrade versions. Just spin up a new container with a different version.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+See dependencies section.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+The role comes with a couple of default values.
+
+**couchbase_version**: enterprise-5.5.2
+Look at [couchbase/server]() for available versons.
+
+**couchbase_docker_volume_dir**: /opt/couchbase/var
+Volume for persisting the Couchbase data.
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+The role requires that docker is installed on the target host. A good tip is to add [geerlingguy.docker](https://galaxy.ansible.com/geerlingguy/docker) role from Ansible Galaxy to your playbook before this role.
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+- hosts: servers
+  roles:
+    - role: geerlingguy.docker
+      become: yes
+    - role: thecuriousdev.couchbase-dockerized
+      couchbase_version: enterprise-5.1.1
+      couchbase_docker_volume_dir: /home/snieking/couchbase/var
+```
 
 License
 -------
@@ -35,5 +48,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
-# ansible-role-couchbase-dockerized
+Viktor Plane [thecuriousdev.org](https://thecuriousdev.org)
