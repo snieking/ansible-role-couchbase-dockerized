@@ -2,4 +2,5 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - ansible-role-couchbase-dockerized
+    - role: ansible-role-couchbase-dockerized
+      couchbase_unencrypted_port: 30001
