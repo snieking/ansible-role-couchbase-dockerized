@@ -15,10 +15,10 @@ Role Variables
 
 The role comes with a couple of default values.
 
-**couchbase_version**: enterprise-5.5.2
+**couchbase_version**: enterprise-5.5.2 \
 Look at [couchbase/server]() for available versons.
 
-**couchbase_docker_volume_dir**: /opt/couchbase/var
+**couchbase_docker_volume_dir**: /opt/couchbase/var \
 Volume for persisting the Couchbase data.
 
 Dependencies
