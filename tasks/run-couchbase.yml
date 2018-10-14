@@ -5,12 +5,6 @@
     state: present
   become: yes
 
-- name: upgrade python-pip
-  pip:
-    name: pip
-    extra_args: --upgrade
-  become: yes
-
 - name: ensure docker-py package exists
   pip:
     name: docker-py
