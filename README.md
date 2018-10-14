@@ -35,7 +35,7 @@ Including an example of how to use your role (for instance, with variables passe
   roles:
     - role: geerlingguy.docker
       become: yes
-    - role: snieking.couchbase-dockerized
+    - role: snieking.couchbase_dockerized
       couchbase_version: enterprise-5.1.1
       couchbase_docker_volume_dir: /home/snieking/couchbase/var
 ```
