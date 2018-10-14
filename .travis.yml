@@ -1,34 +1,26 @@
 ---
 language: python
-services: docker
+python: "2.7"
 
-env:
-  global:
-    - ROLE_NAME: docker
-  matrix:
-    - MOLECULE_DISTRO: centos7
-      MOLECULE_DOCKER_COMMAND: /usr/lib/systemd/systemd
-    - MOLECULE_DISTRO: ubuntu1804
-    - MOLECULE_DISTRO: ubuntu1604
-    - MOLECULE_DISTRO: ubuntu1404
-      MOLECULE_DOCKER_COMMAND: /sbin/init
-    - MOLECULE_DISTRO: debian9
-    # - MOLECULE_DISTRO: fedora27
-    #   MOLECULE_DOCKER_COMMAND: /usr/lib/systemd/systemd
+before_install:
+  # Make sure everything's up to date.
+  - sudo apt-get update -qq
 
 install:
-  # Install test dependencies.
-  - pip install molecule docker
+  # Install Ansible.
+  - pip install ansible
 
-before_script:
-  # Use actual Ansible Galaxy role name for the project directory.
-  - cd ../
-  - mv ansible-role-$NAME_OF_ROLE snieking.$NAME_OF_ROLE
-  - cd snieking.$NAME_OF_ROLE
+  # Add ansible.cfg to pick up roles path.
+  - "printf '[defaults]\nroles_path = ../' > ansible.cfg"
 
 script:
-  # Run tests.
-  - molecule test
-
-notifications:
-  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
+  - ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo
+  # Run the role/playbook again, checking to make sure it's idempotent.
+  - >
+    ansible-playbook -i tests/inventory tests/test.yml --connection=local --sudo
+    | grep -q 'changed=0.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
+  # Check if role successfully installed Couchbase
+  - curl http://localhost:8091/ui/index.html

@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - couchbase-cluster
+    - ansible-role-couchbase-dockerized
