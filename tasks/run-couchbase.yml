@@ -20,6 +20,6 @@
     published_ports: "{{ couchbase_ports }}"
   become: yes
 
-- name: wait for port 8091
+- name: wait for port Couchbase GUI to become available
   wait_for: host=localhost:8091/ui/index.html
     
