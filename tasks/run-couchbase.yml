@@ -21,5 +21,5 @@
   become: yes
 
 - name: wait for port 8091
-  wait_for: port=8091
+  wait_for: host=localhost:8091/ui/index.html
     
