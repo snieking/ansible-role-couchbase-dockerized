@@ -1,7 +1,4 @@
 ---
-- name: check docker installed
-  command: docker
-
 - name: include os configuration for CentOS/RHEL
   include_tasks: configure-os.yml
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'

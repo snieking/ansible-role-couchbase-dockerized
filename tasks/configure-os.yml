@@ -18,3 +18,4 @@
     name: disable-thp
     state: started
     enabled: yes
+  become: yes
