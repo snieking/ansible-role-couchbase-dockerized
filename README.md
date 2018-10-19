@@ -9,8 +9,11 @@ There are many good reasons to run Couchbase in a dockerized environment. The ma
 
 Requirements
 ------------
+The role requires **python-pip** to be installed and available on the hosts.
 
-The role requires that docker is installed on the target host. A good tip is to add [geerlingguy.docker](https://galaxy.ansible.com/geerlingguy/docker) role from Ansible Galaxy to your playbook before this role is executed.
+Docker is also required to be installed on the hosts. A good tip is to add [geerlingguy.docker](https://galaxy.ansible.com/geerlingguy/docker) role from Ansible Galaxy to your playbook before this role is executed.
+
+**Also make sure that the user is in the docker group.**
 
 Role Variables
 --------------
@@ -35,6 +38,20 @@ Including an example of how to use your role (for instance, with variables passe
   roles:
     - role: geerlingguy.docker
       become: yes
+  post_tasks:
+    - name: add to docker group
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+      become: yes
+    - name: install pip
+      easy_install:
+        name: pip
+        state: latest
+      become: yes
+
+- hosts: servers
+  roles:
     - role: snieking.couchbase_dockerized
       couchbase_version: enterprise-5.1.1
       couchbase_docker_volume_dir: /home/snieking/couchbase/var

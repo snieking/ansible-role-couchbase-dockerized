@@ -1,15 +1,16 @@
 ---
-- name: install python-pip
-  package:
-    name: python-pip
-    state: present
-  become: yes
-
-- name: ensure docker-py package exists
+- name: ensure docker package exists
   pip:
-    name: docker-py
+    name: docker
     state: present
-  become: yes
+    extra_args: --user
+  when: ansible_user != "root"
+
+- name: ensure docker package exists
+  pip:
+    name: docker
+    state: present
+  when: ansible_user == "root"
 
 - name: ensure couchbase is running in docker
   docker_container:
@@ -18,7 +19,6 @@
     volumes:
       - "{{ couchbase_docker_volume_dir }}:/opt/couchbase/var"
     published_ports: "{{ couchbase_ports }}"
-  become: yes
 
 - name: wait for Couchbase API port
   wait_for: { port: 8091 }
