@@ -18,7 +18,7 @@
     image: "couchbase/server:{{ couchbase_version }}"
     volumes:
       - "{{ couchbase_docker_volume_dir }}:/opt/couchbase/var"
-    exposed_ports: "{{ couchbase_ports }}"
+    published_ports: "{{ couchbase_ports }}"
 
 - name: wait for Couchbase API port
   wait_for: { port: 8091 }
