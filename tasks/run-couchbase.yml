@@ -19,6 +19,7 @@
     volumes:
       - "{{ couchbase_docker_volume_dir }}:/opt/couchbase/var"
     published_ports: "{{ couchbase_ports }}"
+    exposed_ports: "{{ couchbase_exported_ports }}"
 
 - name: wait for Couchbase API port
   wait_for: { port: 8091 }
